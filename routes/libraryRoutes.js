@@ -14,12 +14,12 @@ router.post("/books", createBook);
 
 router.get("/books", getBook);
 
+router.get("/books/search", searchBook);
+
 router.get("/books/:id", getBookById);
 
 router.put("/books/:id", updateBook);
 
 router.delete("/books/:id", deleteBook);
-
-router.get("/books/search", searchBook);
 
 module.exports = router;
