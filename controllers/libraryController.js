@@ -79,19 +79,17 @@ exports.deleteBook = async (req, res) => {
 
 
 exports.searchBook = async (req, res) => {
+  try {
 
-    try {
+    const name = req.query.name;
 
-        const name = req.query.name;
+    const books = await Library.find({
+      booktitle: { $regex: name, $options: "i" }
+    });
 
-        const books = await Library.find({
-            fullName: { $regex: name, $options: "i" }
-        });
+    res.status(200).json(books);
 
-        res.status(200).json(books);
-
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
